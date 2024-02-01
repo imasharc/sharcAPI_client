@@ -11,6 +11,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->requestTypeComboBox, &QComboBox::currentTextChanged,
             this, &MainWindow::onRequestTypeChanged);
 
+    connect(ui->submitRequestButton, &QPushButton::clicked, this, &MainWindow::on_submitRequestButton_clicked);
+
+
 }
 
 MainWindow::~MainWindow()
@@ -19,7 +22,6 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::onRequestTypeChanged(const QString &selectedMethod) {
-    // qDebug() << "Selected HTTP Method:" << selectedMethod;
 
     if (selectedMethod == "GET") {
         // Handle GET request logic
@@ -32,3 +34,10 @@ void MainWindow::onRequestTypeChanged(const QString &selectedMethod) {
     }
     // ... and so on for other methods
 }
+
+void MainWindow::on_submitRequestButton_clicked()
+{
+    QString userInput = ui->inputTextEdit->toPlainText();
+    qDebug() << "User input:" << userInput;
+}
+
