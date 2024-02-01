@@ -16,6 +16,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->submitRequestButton, &QPushButton::clicked, this, &MainWindow::on_submitRequestButton_clicked);
 
+    networkManager = new QNetworkAccessManager(this);
+    connect(networkManager, &QNetworkAccessManager::finished, this, &MainWindow::onRequestFinished);
 
 }
 
@@ -40,7 +42,33 @@ void MainWindow::onRequestTypeChanged(const QString &selectedMethod) {
 
 void MainWindow::on_submitRequestButton_clicked()
 {
-    QString userInput = ui->inputTextEdit->toPlainText();
-    qDebug() << "User input:" << userInput;
+    ui->responseTextBrowser->setText("Test static text");
+
+    QString url = ui->inputTextEdit->toPlainText(); // Get URL from the input field
+    QUrl qurl(url);
+
+    // Ensure the URL is valid
+    if (!qurl.isValid()) {
+        qDebug() << "Invalid URL:" << url;
+        return;
+    }
+
+    QNetworkRequest request(qurl);
+
+    networkManager->get(request); // Send GET request
+}
+
+void MainWindow::onRequestFinished(QNetworkReply *reply) {
+    if (reply->error()) {
+        qDebug() << "Request failed: " << reply->errorString();
+        qDebug() << "Server replied: " << reply->readAll(); // This may contain useful error information
+    } else {
+        QString response = QString(reply->readAll());
+        qDebug() << "Response:" << response;
+
+        ui->responseTextBrowser->setText(response);
+    }
+
+    reply->deleteLater();
 }
 
