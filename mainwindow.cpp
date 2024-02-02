@@ -42,18 +42,27 @@ void MainWindow::onRequestTypeChanged(const QString &selectedMethod) {
 
 void MainWindow::on_submitRequestButton_clicked()
 {
-    ui->responseTextBrowser->setText("Waiting for server response...");
-
     QString url = ui->inputTextEdit->toPlainText(); // Get URL from the input field
     QUrl qurl(url);
 
-    // Ensure the URL is valid
     if (!qurl.isValid()) {
         qDebug() << "Invalid URL:" << url;
         return;
     }
 
+    QString method = ui->requestTypeComboBox->currentText();
     QNetworkRequest request(qurl);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+
+    if (method == "GET") {
+        networkManager->get(request); // Send GET request
+    } else if (method == "POST") {
+        QString jsonBody = ui->bodyTextEdit->toPlainText(); // Assuming jsonTextEdit is the QTextEdit where users enter JSON
+        QByteArray postData = jsonBody.toUtf8();
+        networkManager->post(request, postData); // Send POST request with JSON body
+    }
+
+    // QNetworkRequest request(qurl);
 
     networkManager->get(request); // Send GET request
 }

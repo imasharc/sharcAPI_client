@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>365</width>
-    <height>365</height>
+    <width>572</width>
+    <height>591</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -66,11 +66,44 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>90</y>
-      <width>341</width>
-      <height>231</height>
+      <y>330</y>
+      <width>551</width>
+      <height>221</height>
      </rect>
     </property>
+   </widget>
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>100</y>
+      <width>551</width>
+      <height>221</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
+    <widget class="QWidget" name="tab_none">
+     <attribute name="title">
+      <string>none</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_raw">
+     <attribute name="title">
+      <string>JSON</string>
+     </attribute>
+     <widget class="QTextEdit" name="bodyTextEdit">
+      <property name="geometry">
+       <rect>
+        <x>-1</x>
+        <y>-1</y>
+        <width>549</width>
+        <height>193</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -78,7 +111,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>365</width>
+     <width>572</width>
      <height>21</height>
     </rect>
    </property>
