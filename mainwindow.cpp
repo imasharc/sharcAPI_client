@@ -42,7 +42,7 @@ void MainWindow::onRequestTypeChanged(const QString &selectedMethod) {
 
 void MainWindow::on_submitRequestButton_clicked()
 {
-    ui->responseTextBrowser->setText("Test static text");
+    ui->responseTextBrowser->setText("Waiting for server response...");
 
     QString url = ui->inputTextEdit->toPlainText(); // Get URL from the input field
     QUrl qurl(url);
@@ -61,7 +61,8 @@ void MainWindow::on_submitRequestButton_clicked()
 void MainWindow::onRequestFinished(QNetworkReply *reply) {
     if (reply->error()) {
         qDebug() << "Request failed: " << reply->errorString();
-        qDebug() << "Server replied: " << reply->readAll(); // This may contain useful error information
+        QString errorResponse = "<span style='color: red;'>Error: " + reply->errorString() + "<br>" + reply->readAll() + "</span>";
+        ui->responseTextBrowser->setHtml(errorResponse); // Display error response
     } else {
         QString response = QString(reply->readAll());
         qDebug() << "Response:" << response;
