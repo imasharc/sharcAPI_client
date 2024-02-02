@@ -23,6 +23,7 @@ private slots:
     void onRequestTypeChanged(const QString &selectedMethod);  // Declare your slot here
     void on_submitRequestButton_clicked();
     void onRequestFinished(QNetworkReply *reply);
+    void pasteAsPlainText();
 
 private:
     Ui::MainWindow *ui;

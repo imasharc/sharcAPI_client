@@ -4,6 +4,10 @@
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
+#include <QApplication>
+#include <QShortcut>
+#include <QClipboard>
+#include <QMimeData>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -19,12 +23,27 @@ MainWindow::MainWindow(QWidget *parent)
     networkManager = new QNetworkAccessManager(this);
     connect(networkManager, &QNetworkAccessManager::finished, this, &MainWindow::onRequestFinished);
 
+    // Create the shortcut for "Ctrl+Shift+V"
+    QShortcut *pasteWithoutFormattingShortcut = new QShortcut(QKeySequence("Ctrl+Shift+V"), this);
+    connect(pasteWithoutFormattingShortcut, &QShortcut::activated, this, &MainWindow::pasteAsPlainText);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::pasteAsPlainText() {
+    QWidget *focusWidget = QApplication::focusWidget();
+    if (focusWidget && focusWidget->inherits("QTextEdit")) {
+        QTextEdit *textEdit = static_cast<QTextEdit *>(focusWidget);
+        const QMimeData *mimeData = QApplication::clipboard()->mimeData();
+        if (mimeData->hasText()) {
+            textEdit->insertPlainText(mimeData->text());
+        }
+    }
+}
+
 
 void MainWindow::onRequestTypeChanged(const QString &selectedMethod) {
 
