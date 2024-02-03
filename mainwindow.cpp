@@ -18,6 +18,11 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->requestTypeComboBox, &QComboBox::currentTextChanged,
             this, &MainWindow::onRequestTypeChanged);
 
+    // Set the default theme to dark
+    onThemeToggled(false); // Calls the function with 'false' to set dark mode
+
+    connect(ui->themeCheckBox, &QCheckBox::toggled, this, &MainWindow::onThemeToggled);
+
     connect(ui->submitRequestButton, &QPushButton::clicked, this, &MainWindow::on_submitRequestButton_clicked);
 
     networkManager = new QNetworkAccessManager(this);
@@ -31,6 +36,22 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::onThemeToggled(bool checked) {
+    if (checked) {
+        // Light mode
+        ui->centralWidget->setStyleSheet("background-color: #FFFFFF; color: black;");
+        ui->tabWidget->setStyleSheet("QTabBar::tab { background: #E0E0E0; color: black; }"
+                                     "QTabBar::tab:selected { background: #FFFFFF; }");
+    } else {
+        // Dark mode
+        ui->centralWidget->setStyleSheet("background-color: #2D2D30; color: white;");
+        ui->tabWidget->setStyleSheet("QTabBar::tab { background: #454545; color: white; }"
+                                     "QTabBar::tab:selected { background: #2D2D30; }");
+    }
+    ui->tabWidget->tabBar()->setTabTextColor(ui->tabWidget->indexOf(ui->tab_none), checked ? Qt::black : Qt::white);
+    ui->tabWidget->tabBar()->setTabTextColor(ui->tabWidget->indexOf(ui->tab_raw), checked ? Qt::black : Qt::white);
 }
 
 void MainWindow::pasteAsPlainText() {

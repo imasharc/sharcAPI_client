@@ -24,6 +24,7 @@ private slots:
     void on_submitRequestButton_clicked();
     void onRequestFinished(QNetworkReply *reply);
     void pasteAsPlainText();
+    void onThemeToggled(bool checked);
 
 private:
     Ui::MainWindow *ui;

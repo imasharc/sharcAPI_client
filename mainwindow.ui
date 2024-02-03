@@ -13,7 +13,13 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
+  <widget class="QWidget" name="centralWidget">
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <widget class="QTextEdit" name="inputTextEdit">
     <property name="geometry">
      <rect>
@@ -104,6 +110,19 @@
       </property>
      </widget>
     </widget>
+   </widget>
+   <widget class="QCheckBox" name="themeCheckBox">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>10</y>
+      <width>71</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>dark/light</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
