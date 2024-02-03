@@ -2,6 +2,12 @@
 
 > **IN DEVELOPMENT**
 
+![image](https://github.com/imasharc/sharcAPI_client/assets/60002742/7a79fc65-8e8a-48e3-90bd-5be59f7a9d24)
+
+![image](https://github.com/imasharc/sharcAPI_client/assets/60002742/7800a4dd-23bf-47d7-a101-fb6b009986b1)
+
+![image](https://github.com/imasharc/sharcAPI_client/assets/60002742/af48692a-0dfd-4d78-9d90-7c0273200b96)
+
 ## Overview
 
 sharcAPI Client is a simple C++ GUI application that allows you to send API requests to the given endpoints. It provides a user-friendly graphical interface using the Qt library.
