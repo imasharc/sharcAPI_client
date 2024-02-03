@@ -2,9 +2,17 @@
 
 > **IN DEVELOPMENT**
 
+## Usage
+
+Testing the client is done with https://reqres.in/ which is an tool for online front-end API testing.
+
+GET https://reqres.in/api/users/2 (dark/light theme)
+
 ![image](https://github.com/imasharc/sharcAPI_client/assets/60002742/7a79fc65-8e8a-48e3-90bd-5be59f7a9d24)
 
 ![image](https://github.com/imasharc/sharcAPI_client/assets/60002742/7800a4dd-23bf-47d7-a101-fb6b009986b1)
+
+POST https://reqres.in/api/users/4
 
 ![image](https://github.com/imasharc/sharcAPI_client/assets/60002742/af48692a-0dfd-4d78-9d90-7c0273200b96)
 
