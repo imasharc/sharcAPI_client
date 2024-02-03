@@ -114,14 +114,14 @@
    <widget class="QCheckBox" name="themeCheckBox">
     <property name="geometry">
      <rect>
-      <x>490</x>
-      <y>10</y>
-      <width>71</width>
+      <x>480</x>
+      <y>0</y>
+      <width>91</width>
       <height>26</height>
      </rect>
     </property>
     <property name="text">
-     <string>dark/light</string>
+     <string>lights on/off</string>
     </property>
    </widget>
   </widget>
